@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:internet_checker/core/dependency.dart';
+import 'package:lottie/lottie.dart';
 
 void main() {
   InternetCheckDependencyInjection.init();
@@ -37,6 +38,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Text(
           "This is home page",

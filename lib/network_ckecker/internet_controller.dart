@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:internet_checker/snakbar.dart';
 
 class NetworkController extends GetxController {
   final Connectivity _connectivity = Connectivity();
@@ -21,30 +22,16 @@ class NetworkController extends GetxController {
   }
 
   Future<void> _initConnectivity() async {
-  List<ConnectivityResult> connectivityResults = await _connectivity.checkConnectivity();
-  connectivityResult = connectivityResults.first;
-}
+    List<ConnectivityResult> connectivityResults =
+        await _connectivity.checkConnectivity();
+    connectivityResult = connectivityResults.first;
+  }
 
   void _updateConnectionStatus(ConnectivityResult connectivityResult) {
     if (kDebugMode) print("STATUS : $connectivityResult");
 
     if (connectivityResult == ConnectivityResult.none) {
-      Get.rawSnackbar(
-          messageText: Text('PLEASE CONNECT TO THE INTERNET',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600)),
-          isDismissible: false,
-          duration: const Duration(days: 1),
-          backgroundColor: Colors.red[400]!,
-          icon: Icon(
-            Icons.wifi_off,
-            color: Colors.white,
-            size: 35.sp,
-          ),
-          margin: EdgeInsets.zero,
-          snackStyle: SnackStyle.GROUNDED);
+      MySnackbar.showLottieSnackBar();
     } else {
       if (Get.isSnackbarOpen) {
         Get.closeCurrentSnackbar();
